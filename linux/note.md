@@ -188,6 +188,10 @@
 - 用户命令
 - 用户和用户组操作
 
+## [文件权限](http://www.zhufengpeixun.com/strong/html/125.4.linux-auth.html)
+
+## [sheel](http://www.zhufengpeixun.com/strong/html/125.5.linux-shell.html)
+
 ## 其他
 
 - ``:
