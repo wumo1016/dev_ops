@@ -190,6 +190,16 @@
 
 ## [文件权限](http://www.zhufengpeixun.com/strong/html/125.4.linux-auth.html)
 
+- 基本权限
+  - 文件类型(开头)
+    - `-`: 文件
+    - `d`: 目录
+    - `l`: 软链接文件
+  - `-rw-r--r--` => -所有者-所属组-其它人
+  - r => 读 w => 写 x => 执行
+- 权限修改
+- 默认权限
+
 ## [sheel](http://www.zhufengpeixun.com/strong/html/125.5.linux-shell.html)
 
 ## 其他
