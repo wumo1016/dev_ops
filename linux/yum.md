@@ -1,4 +1,4 @@
-## YUM 包管理器
+## [YUM 包管理器](https://static.zhufengpeixun.com/grow/html/125.6.linux-install.html#t22.%20YUM%E5%9C%A8%E7%BA%BF%E7%AE%A1%E7%90%86)
 
 - 介绍
   - 主要功能是更方便的添加/删除/更新 RPM 包.它能自动解决包的倚赖性问题
