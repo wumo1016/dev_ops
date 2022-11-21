@@ -178,3 +178,13 @@
 
 - `curl [ip]`: 访问 ip
 - `ps`: 查看进程
+- `scp`: 查看进程
+  - `-r`: 递归复制整个目录
+  - `-v`: 详细方式显示输出
+
+```js
+scp local_file remote_username@remote_ip:remote_folder
+scp -r local_folder remote_username@remote_ip:remote_folder
+scp  remote_username@remote_ip:remote_folder  local_file
+scp -r  remote_username@remote_ip:remote_folder local_folder
+```
