@@ -22,6 +22,12 @@ yum install docker-ce docker-ce-cli containerd.io -y #安装社区版
 systemctl start docker
 ```
 
+## 停止
+
+```yml
+
+```
+
 ## 卸载
 
 ```yml

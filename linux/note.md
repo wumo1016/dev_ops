@@ -168,6 +168,10 @@
   - `-qc [软件名]`: 查看一个已安装软件的配置文件
   - `-qd [软件名]`: 查看一个已经安装软件的文档安装位置
   - `-qR [软件名]`: 查看一下已安装软件所依赖的软件包及文件
+- `systemctl`: 进程相关
+  - `start [名]`: 启动进程
+  - `restart [名]`: 重启进程
+  - `stop [名]`: 停止进程
 
 ## [用户](https://static.zhufengpeixun.com/grow/html/125.3.linux-user.html)
 
