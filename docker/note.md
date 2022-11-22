@@ -91,13 +91,23 @@ rm -rf /var/lib/docker
     - `-9`: 强行停止
   - `docker rm [name/ID]`: 删除容器
   - `docker rm ${docker pa -a -q}`: 删除所有容器
-  - ``:
-  - ``:
-  - ``:
+  - `docker image prune`: 删除已经停止的容器
 
 ## 安装 nginx
 
 ```yml
 docker pull nginx
 docker run -d -p 3000-3010:3000-3010 -p 80:80 -p 443:443 --name nginx -v /nginx/html:/usr/share/nginx/html -v /nginx/conf/nginx.conf:/etc/nginx/nginx.conf -v /nginx/cert:/etc/nginx/cert -v /nginx/logs:/var/log/nginx nginx
+```
+
+## 制作个性化镜像
+
+- `docker commit`: 基于已有容器创建一个新的镜像，以后可以基于自己的镜像创建容器
+  - `-a`: 提交的镜像作者
+  - `-c`: 使用 Dockerfile 指令来创建镜像
+  - `-m`: 提交时的说明文字
+  - `-p`: 在 commit 时，将容器暂停
+
+```yml
+docker commit -m"wmo的nginx" -a"wumo" 317936e0f375 wumo/nginx
 ```
