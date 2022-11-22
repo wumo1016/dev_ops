@@ -156,6 +156,13 @@
 - `last`: 查看当前登录和过去登录的用户信息
 - `lastlog`: 查看所有用户的最后一次登录时间
 
+### 系统相关
+
+- `free`: 查看内存使用状态
+  - `-h`: 人性化显示
+- `df`: 查看磁盘大小
+  - `-h`: 人性化显示
+
 ## [用户](https://static.zhufengpeixun.com/grow/html/125.3.linux-user.html)
 
 - 配置文件
