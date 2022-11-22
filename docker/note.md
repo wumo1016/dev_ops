@@ -103,13 +103,6 @@ rm -rf /var/lib/docker
   - `docker exec -it [name/ID] /bin/bash`: 进入容器内部执行命令
   - `docker cp [name/ID]:/root/root.txt .`: 从容器里面，将文件拷贝到本机
 
-## 安装 nginx
-
-```yml
-docker pull nginx
-docker run -d -p 3000-3010:3000-3010 -p 80:80 -p 443:443 --name nginx -v /nginx/html:/usr/share/nginx/html -v /nginx/conf/nginx.conf:/etc/nginx/nginx.conf -v /nginx/cert:/etc/nginx/cert -v /nginx/logs:/var/log/nginx nginx
-```
-
 ## 制作个性化镜像
 
 - `docker commit`: 基于已有容器创建一个新的镜像，以后可以基于自己的镜像创建容器
@@ -120,4 +113,32 @@ docker run -d -p 3000-3010:3000-3010 -p 80:80 -p 443:443 --name nginx -v /nginx/
 
 ```yml
 docker commit -m"wmo的nginx" -a"wumo" 317936e0f375 wumo/nginx
+```
+
+## Dockerfile
+
+- 文件内指令
+  - `FROM [name/ID]`: 构建的新镜像是基于哪个镜像
+  - `WORKDIR [目录]`: 为 RUN、CMD、ENTRYPOINT、COPY、ADD 等命令设置工作目录
+  - `MAINTAINER [name]`: 镜像作者
+  - `RUN [命令]`: 构建镜像时运行的 shell 命令
+    - 例如 s 构建 npm 包: `RUN npm install`
+  - `ADD [源文件/源目录/源URL] [目标目录/目标文件]`: 拷贝文件或目录到镜像中，如果是 URL 或者压缩包会自动下载和解压
+  - `COPY [源文件/源目录] [目标目录/目标文件]`: 拷贝文件或目录到镜像中去
+  - `ENTRYPOINT [命令]`: 配置容器启动时运行的命令
+    - 例如: `ENTRYPOINT /bin/bash -c '/start.sh'`
+  - `VOLUME [[目录]]`: 指定容器挂载点到宿主自动生成的目录或其它容器
+  - `USER [用户名]`: 为 RUN、CMD、ENTRYPOINT、COPY、ADD 等命令指定运行用户
+  - `EXPOSE [端口]`: 声明容器运行的服务器端口
+- `.dockerignore`文件
+  - 表示要排除，不要打包到 image 中的文件路径
+- 构建镜像
+  - `docker build -t [镜像名称]:[TAG]`
+    - `-f`: 指定 Dockerfile(不指定就默认寻找)
+
+## 安装 nginx
+
+```yml
+docker pull nginx
+docker run -d -p 3000-3010:3000-3010 -p 80:80 -p 443:443 --name nginx -v /nginx/html:/usr/share/nginx/html -v /nginx/conf/nginx.conf:/etc/nginx/nginx.conf -v /nginx/cert:/etc/nginx/cert -v /nginx/logs:/var/log/nginx nginx
 ```
