@@ -71,3 +71,33 @@ rm -rf /var/lib/docker
   SIZE: 镜像大小
   ```
   - `docker rmi [imageName] -f`: 删除镜像
+
+## 容器
+
+- 介绍
+  - `docker run` 命令会根据镜像文件，生成一个正在运行的容器实例(如果发现本地没有指定的 image 文件，就会从仓库自动抓取)
+  - 容器生成后，会生成一个文件，叫容器文件
+- 常用命令
+  - `docker ps`: 查看正在运行的容器
+    - `-a`: 查看所有容器
+  - `docker run [imageName]`: 创建一个容器
+    - `--name [容器名]`: 设置容器名
+    - `-p [真实端口]:[容器端口]`: 映射端口
+    - `-d`: 运行到后台
+  - `docker start [name/ID]`: 启动容器
+  - `docker restart [name/ID]`: 重启容器
+  - `docker stop [name/ID]`: 停止容器(有序停止)
+  - `docker kill [name/ID]`: 直接停止
+    - `-9`: 强行停止
+  - `docker rm [name/ID]`: 删除容器
+  - `docker rm ${docker pa -a -q}`: 删除所有容器
+  - ``:
+  - ``:
+  - ``:
+
+## 安装 nginx
+
+```yml
+docker pull nginx
+docker run -d -p 3000-3010:3000-3010 -p 80:80 -p 443:443 --name nginx -v /nginx/html:/usr/share/nginx/html -v /nginx/conf/nginx.conf:/etc/nginx/nginx.conf -v /nginx/cert:/etc/nginx/cert -v /nginx/logs:/var/log/nginx nginx
+```
