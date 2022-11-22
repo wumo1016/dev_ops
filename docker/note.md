@@ -15,3 +15,23 @@ yum install -y yum-utils device-mapper-persistent-data lvm2 #安装工具
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo #设置安装源
 yum install docker-ce docker-ce-cli containerd.io -y #安装社区版
 ```
+
+## 启动
+
+```yml
+systemctl start docker
+```
+
+## 卸载
+
+```yml
+yum remove docker
+rm -rf /var/lib/docker
+```
+
+## 常用命令
+
+- `docker version`: 查看 docker 版本
+- `docker indo`: 查看 docker 信息
+
+## 镜像
