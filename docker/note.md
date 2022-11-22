@@ -71,6 +71,12 @@ rm -rf /var/lib/docker
   SIZE: 镜像大小
   ```
   - `docker rmi [imageName] -f`: 删除镜像
+  - `docker history [imageName]`: 查看镜像提交历史
+  - `docker inspect [imageName]`: 显示镜像详细信息
+  - `docker export -o [输出名].tar [镜像ID]`: 导出镜像
+  - `docker import [name].tar [REPOSITORY[:TAG]]`: 导入镜像
+  - `docker save -o [输出名].tar [镜像ID]`: 保存镜像(export 会丢失元信息(REPOSITORY, TAG 等))
+  - `docker load -i [name].tar`: 加载 tar 文件并创建镜像
 
 ## 容器
 
@@ -87,11 +93,15 @@ rm -rf /var/lib/docker
   - `docker start [name/ID]`: 启动容器
   - `docker restart [name/ID]`: 重启容器
   - `docker stop [name/ID]`: 停止容器(有序停止)
+    - `docker stop ${docker ps -aq}`: 停止所有容器
   - `docker kill [name/ID]`: 直接停止
     - `-9`: 强行停止
   - `docker rm [name/ID]`: 删除容器
-  - `docker rm ${docker pa -a -q}`: 删除所有容器
-  - `docker image prune`: 删除已经停止的容器
+    - `docker rm ${docker ps -aq}`: 删除所有容器
+    - `docker image prune`: 删除已经停止的容器
+  - `docker port [name/ID]`: 查看容器的端口映射
+  - `docker exec -it [name/ID] /bin/bash`: 进入容器内部执行命令
+  - `docker cp [name/ID]:/root/root.txt .`: 从容器里面，将文件拷贝到本机
 
 ## 安装 nginx
 
