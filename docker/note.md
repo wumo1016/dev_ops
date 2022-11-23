@@ -153,6 +153,93 @@ rm -rf /var/lib/docker
   - `host`：容器将不会虚拟出自己的网卡，配置自己的 IP 等，而是使用宿主机的 IP 和端口。
   - `bridge`: 桥接网络，此模式会为每一个容器分配 IP，默认模式
 
+## compose
+
+- 介绍
+  - Compose 通过一个配置文件来管理多个 Docker 容器
+- 安装
+
+```yml
+## 方式一
+sudo curl -L "https://github.com/docker/compose/releases/download/1.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+# 添加可执行权限
+sudo chmod +x /usr/local/bin/docker-compose
+# 查看版本信息
+docker-compose -version
+
+## 方式二
+yum -y install epel-release
+yum -y install python-pip
+yum clean all
+pip install docker-compose
+```
+
+- 配置文件 `docker-compose.yml`
+  - 空格缩进表示层次
+  - 冒号空格后面有空格
+  ```yml
+  version: '2'
+  services:
+    nginx1:
+      image: nginx
+      ports:
+        - '8080:80'
+    nginx2:
+      image: nginx
+      ports:
+        - '8081:80'
+  ```
+- 常用命令
+  - `docker-compose up`: 启动所有的服务
+  - `docker-compose up -d`: 后台启动所有的服务
+  - `docker-compose ps`: 打印所有的容器
+  - `docker-compose stop`: 停止所有服务
+  - `docker-compose logs -f`: 持续跟踪日志
+  - `docker-compose exec nginx1 bash`: 进入 nginx1 服务系统
+  - `docker-compose rm nginx1`: 删除服务容器
+  - `docker network ls`: 查看网络网络不会删除
+  - `docker-compose down`: 删除所有的网络和容器
+- 配置数据卷
+
+```yml
+version: '3'
+services:
+  nginx1:
+    image: nginx
+    ports:
+      - '8081:80'
+    networks:
+      - 'newweb'
+    volumes:
+      - 'data:/data'
+      - './nginx1:/usr/share/nginx/html'
+  nginx2:
+    image: nginx
+    ports:
+      - '8082:80'
+    networks:
+      - 'default'
+    volumes:
+      - 'data:/data'
+      - './nginx2:/usr/share/nginx/html'
+  nginx3:
+    image: nginx
+    ports:
+      - '8083:80'
+    networks:
+      - 'default'
+      - 'newweb'
+    volumes:
+      - 'data:/data'
+      - './nginx3:/usr/share/nginx/html'
+networks:
+  newweb:
+    driver: bridge
+volumes:
+  data:
+    driver: local
+```
+
 ## 安装 nginx
 
 ```yml
