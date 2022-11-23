@@ -77,6 +77,24 @@ rm -rf /var/lib/docker
   - `docker import [name].tar [REPOSITORY[:TAG]]`: 导入镜像
   - `docker save -o [输出名].tar [镜像ID]`: 保存镜像(export 会丢失元信息(REPOSITORY, TAG 等))
   - `docker load -i [name].tar`: 加载 tar 文件并创建镜像
+- 制作个性化镜像
+  - `docker commit`: 基于已有容器创建一个新的镜像，以后可以基于自己的镜像创建容器
+    - `-a`: 提交的镜像作者
+    - `-c`: 使用 Dockerfile 指令来创建镜像
+    - `-m`: 提交时的说明文字
+    - `-p`: 在 commit 时，将容器暂停
+  ```yml
+  docker commit -m"wmo的nginx" -a"wumo" 317936e0f375 wumo/nginx
+  ```
+- 发布镜像
+
+  ```yml
+  docker login
+  # docker image tag [imageName] [username]/[repository]:[tag]
+  # docker image build -t [username]/[repository]:[tag] .
+  # docker tag express-demo zhangrenyang/express-demo:v1
+  docker push zhangrenyang/express-demo:v1
+  ```
 
 ## 容器
 
@@ -103,18 +121,6 @@ rm -rf /var/lib/docker
   - `docker exec -it [name/ID] /bin/bash`: 进入容器内部执行命令
   - `docker cp [name/ID]:/root/root.txt .`: 从容器里面，将文件拷贝到本机
 
-## 制作个性化镜像
-
-- `docker commit`: 基于已有容器创建一个新的镜像，以后可以基于自己的镜像创建容器
-  - `-a`: 提交的镜像作者
-  - `-c`: 使用 Dockerfile 指令来创建镜像
-  - `-m`: 提交时的说明文字
-  - `-p`: 在 commit 时，将容器暂停
-
-```yml
-docker commit -m"wmo的nginx" -a"wumo" 317936e0f375 wumo/nginx
-```
-
 ## Dockerfile
 
 - 文件内指令
@@ -136,9 +142,25 @@ docker commit -m"wmo的nginx" -a"wumo" 317936e0f375 wumo/nginx
   - `docker build -t [镜像名称]:[TAG]`
     - `-f`: 指定 Dockerfile(不指定就默认寻找)
 
+## 数据盘
+
+- 介绍: 删除容器的时候，容器层里创建的文件也会被删除掉，如果有些数据你想永久保存，比如 Web 服务器的日志，数据库管理系统中的数据，可以为容器创建一个数据盘
+
 ## 安装 nginx
 
 ```yml
 docker pull nginx
 docker run -d -p 3000-3010:3000-3010 -p 80:80 -p 443:443 --name nginx -v /nginx/html:/usr/share/nginx/html -v /nginx/conf/nginx.conf:/etc/nginx/nginx.conf -v /nginx/cert:/etc/nginx/cert -v /nginx/logs:/var/log/nginx nginx
 ```
+
+<!--
+dist/**,Dockerfile,default.conf
+
+cd  /data/${JOB_BASE_NAME}
+docker stop ${JOB_BASE_NAME}
+docker rm -f ${JOB_BASE_NAME}
+docker rmi $(docker images -f "dangling=true" -q)
+docker rmi -f $(docker images -f "label=${JOB_BASE_NAME}" -q)
+docker build -t ${JOB_BASE_NAME} .
+docker run  --restart=always  --name ${JOB_BASE_NAME}   -p 25555:80 -d ${JOB_BASE_NAME}
+ -->
