@@ -37,3 +37,17 @@ sed -i 's/http:\/\/updates.jenkins-ci.org\/download/https:\/\/mirrors.tuna.tsing
 sudo gpasswd -a jenkins docker  #将当前用户添加至docker用户组
 newgrp docker                 #更新docker用户组
 ```
+
+## 安装 java
+
+```yml
+yum install -y java
+java -version
+```
+
+```yml
+# 设置jenkins端口与用户
+vim /etc/sysconfig/jenkins
+JENKINS_USER="root"
+JENKINS_PORT="8099"
+```

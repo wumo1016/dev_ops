@@ -1,0 +1,1 @@
+- 查看操作系统: `cat /etc/redhat-release`
