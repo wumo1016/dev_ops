@@ -20,10 +20,11 @@ yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce
 yum install docker-ce docker-ce-cli containerd.io -y #安装社区版
 ```
 
-## 启动
+## 启动并设置开机自启
 
 ```yml
 systemctl start docker
+systemctl enable docker
 ```
 
 ## [阿里云加速](https://cr.console.aliyun.com/cn-shanghai/instances/mirrors)
@@ -41,10 +42,6 @@ sudo systemctl restart docker
 
 ## 停止
 
-```yml
-
-```
-
 ## 卸载
 
 ```yml
@@ -55,7 +52,7 @@ rm -rf /var/lib/docker
 ## 常用命令
 
 - `docker version`: 查看 docker 版本
-- `docker indo`: 查看 docker 信息
+- `docker info`: 查看 docker 信息
 
 ## 镜像
 
