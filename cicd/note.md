@@ -55,3 +55,6 @@ JENKINS_PORT="8099"
 wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
 rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
 yum install jenkins
+
+https://www.jianshu.com/p/5ca07cca1578?utm_campaign=maleskine&utm_content=note&utm_medium=seo_notes&utm_source=recommendation
+https://blog.csdn.net/weixin_59006343/article/details/126421353
