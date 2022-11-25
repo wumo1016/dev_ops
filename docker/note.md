@@ -1,16 +1,16 @@
 ## 介绍
 
-- Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。它是目前最流行的 Linux 容器解决方案
-- Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样
+- Docker 属于 Linux 容器的一种封装, 提供简单易用的容器使用接口。它是目前最流行的 Linux 容器解决方案
+- Docker 将应用程序与该程序的依赖, 打包在一个文件里面。运行这个文件, 就会生成一个虚拟容器。程序在这个虚拟容器里运行, 就好像在真实的物理机上运行一样
 - 运行后有客户端和服务端
-  - 服务端: 在后台运行，接收指令
+  - 服务端: 在后台运行, 接收指令
   - 客户端: 发送指令
 
 ## 安装
 
 - yum-utils
 - device mapper
-  - Device Mapper 是 Linux2.6 内核中支持逻辑卷管理的通用设备映射机制，它为实现用于存储资源管理的块设备驱动提供了一个高度模块化的内核架构。
+  - Device Mapper 是 Linux2.6 内核中支持逻辑卷管理的通用设备映射机制, 它为实现用于存储资源管理的块设备驱动提供了一个高度模块化的内核架构。
   - device-mapper-persistent-data 和 lvm2 两者都是 Device Mapper 所需要的
 - containerd.io: 容器管理工具
 
@@ -75,11 +75,11 @@ rm -rf /var/lib/docker
   - `docker save -o [输出名].tar [镜像ID]`: 保存镜像(export 会丢失元信息(REPOSITORY, TAG 等))
   - `docker load -i [name].tar`: 加载 tar 文件并创建镜像
 - 制作个性化镜像
-  - `docker commit`: 基于已有容器创建一个新的镜像，以后可以基于自己的镜像创建容器
+  - `docker commit`: 基于已有容器创建一个新的镜像, 以后可以基于自己的镜像创建容器
     - `-a`: 提交的镜像作者
     - `-c`: 使用 Dockerfile 指令来创建镜像
     - `-m`: 提交时的说明文字
-    - `-p`: 在 commit 时，将容器暂停
+    - `-p`: 在 commit 时, 将容器暂停
   ```yml
   docker commit -m"wmo的nginx" -a"wumo" 317936e0f375 wumo/nginx
   ```
@@ -96,8 +96,8 @@ rm -rf /var/lib/docker
 ## 容器
 
 - 介绍
-  - `docker run` 命令会根据镜像文件，生成一个正在运行的容器实例(如果发现本地没有指定的 image 文件，就会从仓库自动抓取)
-  - 容器生成后，会生成一个文件，叫容器文件
+  - `docker run` 命令会根据镜像文件, 生成一个正在运行的容器实例(如果发现本地没有指定的 image 文件, 就会从仓库自动抓取)
+  - 容器生成后, 会生成一个文件, 叫容器文件
 - 常用命令
   - `docker ps`: 查看正在运行的容器
     - `-a`: 查看所有容器
@@ -116,7 +116,7 @@ rm -rf /var/lib/docker
     - `docker image prune`: 删除已经停止的容器
   - `docker port [name/ID]`: 查看容器的端口映射
   - `docker exec -it [name/ID] /bin/bash`: 进入容器内部执行命令
-  - `docker cp [name/ID]:/root/root.txt .`: 从容器里面，将文件拷贝到本机
+  - `docker cp [name/ID]:/root/root.txt .`: 从容器里面, 将文件拷贝到本机
 
 ## Dockerfile
 
@@ -126,7 +126,7 @@ rm -rf /var/lib/docker
   - `MAINTAINER [name]`: 镜像作者
   - `RUN [命令]`: 构建镜像时运行的 shell 命令
     - 例如 s 构建 npm 包: `RUN npm install`
-  - `ADD [源文件/源目录/源URL] [目标目录/目标文件]`: 拷贝文件或目录到镜像中，如果是 URL 或者压缩包会自动下载和解压
+  - `ADD [源文件/源目录/源URL] [目标目录/目标文件]`: 拷贝文件或目录到镜像中, 如果是 URL 或者压缩包会自动下载和解压
   - `COPY [源文件/源目录] [目标目录/目标文件]`: 拷贝文件或目录到镜像中去
   - `ENTRYPOINT [命令]`: 配置容器启动时运行的命令
     - 例如: `ENTRYPOINT /bin/bash -c '/start.sh'`
@@ -134,21 +134,21 @@ rm -rf /var/lib/docker
   - `USER [用户名]`: 为 RUN、CMD、ENTRYPOINT、COPY、ADD 等命令指定运行用户
   - `EXPOSE [端口]`: 声明容器运行的服务器端口
 - `.dockerignore`文件
-  - 表示要排除，不要打包到 image 中的文件路径
+  - 表示要排除, 不要打包到 image 中的文件路径
 - 构建镜像
   - `docker build -t [镜像名称]:[TAG]`
     - `-f`: 指定 Dockerfile(不指定就默认寻找)
 
 ## 数据盘
 
-- 介绍: 删除容器的时候，容器层里创建的文件也会被删除掉，如果有些数据你想永久保存，比如 Web 服务器的日志，数据库管理系统中的数据，可以为容器创建一个数据盘
+- 介绍: 删除容器的时候, 容器层里创建的文件也会被删除掉, 如果有些数据你想永久保存, 比如 Web 服务器的日志, 数据库管理系统中的数据, 可以为容器创建一个数据盘
 
 ## 网络
 
-- 安装 Docker 时，它会自动创建三个网络，bridge（创建容器默认连接到此网络）、 none 、hos
+- 安装 Docker 时, 它会自动创建三个网络, bridge（创建容器默认连接到此网络）、 none 、hos
   - `None`：该模式关闭了容器的网络功能,对外界完全隔离
-  - `host`：容器将不会虚拟出自己的网卡，配置自己的 IP 等，而是使用宿主机的 IP 和端口。
-  - `bridge`: 桥接网络，此模式会为每一个容器分配 IP，默认模式
+  - `host`：容器将不会虚拟出自己的网卡, 配置自己的 IP 等, 而是使用宿主机的 IP 和端口。
+  - `bridge`: 桥接网络, 此模式会为每一个容器分配 IP, 默认模式
 
 ## compose
 

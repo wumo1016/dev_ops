@@ -14,8 +14,8 @@
   - `yum search`: 关键字 搜索服务器上所有和关键字相关的包
   - `yum -y install`: 包名 -y 自动回答 yes install 安装
   - `yum -y update`: 包名 -y 自动回答 yes update 升级
-  - `yum -y remove`: 包名 -y 自动回答 yes remove 卸载,卸载有依赖性，所以尽量不要卸载
+  - `yum -y remove`: 包名 -y 自动回答 yes remove 卸载, 卸载有依赖性, 所以尽量不要卸载
   - `yum grouplist`: 列出所有可用的软件组列表
-  - `yum groupinstall`: 软件组名 安装指定的组，组名可以用 grouplist 查询
+  - `yum groupinstall`: 软件组名 安装指定的组, 组名可以用 grouplist 查询
   - `yum groupremove`: 软件组名 卸载指定软件组
   - `yum makecache`: 更新缓存
