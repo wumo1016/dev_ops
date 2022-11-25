@@ -51,3 +51,7 @@ vim /etc/sysconfig/jenkins
 JENKINS_USER="root"
 JENKINS_PORT="8099"
 ```
+
+wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+yum install jenkins
