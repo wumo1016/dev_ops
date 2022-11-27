@@ -37,9 +37,9 @@ systemctl enable jenkins
 cat /root/.jenkins/secrets/initialAdminPassword
 
 ## 忘记密码
-# 先找到jenkins的配置文件 如果jenkins启动了, 请先停止
-find / -name config.xml
-# 查看jenkins用户
+# 查看jenkins的家目录 => JENKINS_HOME="/var/lib/jenkins" (如果jenkins启动了, 请先停止)
+cat /etc/sysconfig/jenkins
+# 查看所有用户
 cd /var/lib/jenkins/users
 # 显示所有用户文件夹
 ll
