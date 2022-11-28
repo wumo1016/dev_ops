@@ -35,21 +35,6 @@ systemctl enable jenkins
 
 # 查看初始化密码
 cat /root/.jenkins/secrets/initialAdminPassword
-
-## 忘记密码
-# 查看jenkins的家目录 => JENKINS_HOME="/var/lib/jenkins" (如果jenkins启动了, 请先停止)
-cat /etc/sysconfig/jenkins
-# 查看所有用户
-cd /var/lib/jenkins/users
-# 显示所有用户文件夹
-ll
-# 进入用户文件夹(示例)
-cd [admin_17382633154898304334]
-# 编辑这个文件
-vim config.xml
-# 修改密码。将标签passwordHash内的内容修改为下面的字符串, 值为admin, 然后重启jenkins。登录成功后可修改
-#jbcrypt:$2a$10$U5k0o/d3wILeu5k0lHANlelEdqm60BY0RPawp1VvjYldUksiVsWVi
-
 ```
 
 ## 安装 git 仓库
