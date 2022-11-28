@@ -1,9 +1,17 @@
+## 安装 git 仓库
+
+- 生成公钥私钥 `ssh-keygen -t rsa -C "760478279@qq.com"`
+  - `cat /root/.ssh/id_rsa.pub`: 进入这个文件, 复制公钥
+- 在 gitee 中配置 Gitee 配置公钥
+
 ## [安装 java](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html)
 
 ```yml
 # 新版jenkins必须使用 11 版本
 yum install epel-release
 yum install java-11-openjdk-devel
+# 查看版本
+java -version
 ```
 
 ## [安装 Jenkins](https://pkg.jenkins.io/redhat-stable/)
@@ -20,8 +28,9 @@ vim /etc/sysconfig/jenkins
 JENKINS_USER="root"
 # 修改启动端口
 JENKINS_PORT="8000"
-# 以上修改端口如果无效, 就进入下面这个文件修改 Environment="JENKINS_PORT=8080" 这个部分, 然后更新配置
+# 进入下面这个文件修改 Environment
 vim /usr/lib/systemd/system/jenkins.service
+# 更新配置
 systemctl daemon-reload
 
 # 修改插件镜像
@@ -34,11 +43,5 @@ systemctl start jenkins
 systemctl enable jenkins
 
 # 查看初始化密码
-cat /root/.jenkins/secrets/initialAdminPassword
+cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
-
-## 安装 git 仓库
-
-- 生成公钥私钥 `ssh-keygen -t rsa -C "760478279@qq.com"`
-  - `cat /root/.ssh/id_rsa.pub`: 进入这个文件, 复制公钥
-- 在 gitee 中配置 Gitee 配置公钥

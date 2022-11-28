@@ -41,3 +41,7 @@ docker build -t viteproject:1.0.0 .
 usermod -aG docker jenkins
 systemctl restart jenkins
 ```
+
+## 查看 jenkins 所属用户
+
+`ps -ef | grep jenkins`
