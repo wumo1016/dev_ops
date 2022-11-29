@@ -45,3 +45,14 @@ docker build -t viteproject:1.0.0 .
 ## 查看 jenkins 所属用户
 
 `ps -ef | grep jenkins`
+
+
+```yml
+cd /data/${JOB_BASE_NAME}
+docker stop ${JOB_BASE_NAME}
+docker rm -f ${JOB_BASE_NAME}
+docker rmi $(docker images -f "dangling=true" -q)
+docker rmi -f $(docker images -f "label=offspringseed.${JOB_BASE_NAME}" -q)
+docker build -t ${JOB_BASE_NAME} . 
+docker run  --restart=always    --name ${JOB_BASE_NAME} -p 8701:80 -d ${JOB_BASE_NAME} 
+```
