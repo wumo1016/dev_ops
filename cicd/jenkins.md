@@ -42,12 +42,24 @@ jenkins => 系统管理 => 全局工具配置 => NodeJS
 ```yml
 npm install --registry=https://registry.npm.taobao.org
 npm run build
-docker stop ${JOB_BASE_NAME}
+docker stop ${JOB_BASE_NAME} 2> /dev/null
 docker rm ${JOB_BASE_NAME}
 docker rmi ${JOB_BASE_NAME}
 docker build -t ${JOB_BASE_NAME} .
 docker run -d -p 80:80 --name ${JOB_BASE_NAME} ${JOB_BASE_NAME}
 ```
+
+```yml
+npm install --registry=https://registry.npm.taobao.org
+npm run build
+docker stop ${JOB_BASE_NAME} 2> null
+docker rm ${JOB_BASE_NAME} 2> null
+docker rmi ${JOB_BASE_NAME} 2> null
+docker build -t ${JOB_BASE_NAME} .
+docker run -d -p 80:80 --name ${JOB_BASE_NAME} ${JOB_BASE_NAME}
+```
+
+WORKSPACE
 
 ## 查看 jenkins 所属用户
 

@@ -60,14 +60,9 @@ rm -rf /var/lib/docker
   - `docker search [imageName]`: 查找镜像
   - `docker pull [imageName]`: 拉取镜像
   - `docker images`: 列出所有镜像
-  ```js
-  REPOSITORY: 仓库地址
-  TAG: 标签
-  IMAGE_ID: 镜像ID
-  CREATED: 创建时间
-  SIZE: 镜像大小
-  ```
-  - `docker rmi [imageName] -f`: 删除镜像
+    - `-q`: 只显示镜像 id
+  - `docker rmi [imageName]`: 删除镜像
+    - `-f`: 强制删除
   - `docker history [imageName]`: 查看镜像提交历史
   - `docker inspect [imageName]`: 显示镜像详细信息
   - `docker export -o [输出名].tar [镜像ID]`: 导出镜像
@@ -115,7 +110,7 @@ rm -rf /var/lib/docker
     - `docker rm ${docker ps -aq}`: 删除所有容器
     - `docker image prune`: 删除已经停止的容器
   - `docker port [name/ID]`: 查看容器的端口映射
-  - `docker exec -it [name/ID] /bin/bash`: 进入容器内部执行命令, 输入exit退出
+  - `docker exec -it [name/ID] /bin/bash`: 进入容器内部执行命令, 输入 exit 退出
   - `docker cp [name/ID]:/root/root.txt .`: 从容器里面, 将文件拷贝到本机
 
 ## Dockerfile
