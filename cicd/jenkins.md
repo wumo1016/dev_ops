@@ -14,6 +14,10 @@
 
 到 jenkins 插件管理中搜索`nodejs`即可
 
+## 安装 gitee 插件
+
+到 jenkins 插件管理中搜索`gitee`即可
+
 ## 添加 docker 权限
 
 ```yml
@@ -36,17 +40,6 @@ jenkins => 系统管理 => 全局工具配置 => NodeJS
 ## 执行 sheel
 
 ```yml
-#!/bin/bash
-npm install --registry=https://registry.npm.taobao.org
-npm run build
-docker build -t viteproject:1.0.0 .
-```
-
-## 查看 jenkins 所属用户
-
-`ps -ef | grep jenkins`
-
-<!--
 npm install --registry=https://registry.npm.taobao.org
 npm run build
 docker stop ${JOB_BASE_NAME}
@@ -54,4 +47,8 @@ docker rm ${JOB_BASE_NAME}
 docker rmi ${JOB_BASE_NAME}
 docker build -t ${JOB_BASE_NAME} .
 docker run -d -p 80:80 --name ${JOB_BASE_NAME} ${JOB_BASE_NAME}
- -->
+```
+
+## 查看 jenkins 所属用户
+
+`ps -ef | grep jenkins`
