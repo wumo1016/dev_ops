@@ -115,7 +115,7 @@ rm -rf /var/lib/docker
     - `docker rm ${docker ps -aq}`: 删除所有容器
     - `docker image prune`: 删除已经停止的容器
   - `docker port [name/ID]`: 查看容器的端口映射
-  - `docker exec -it [name/ID] /bin/bash`: 进入容器内部执行命令
+  - `docker exec -it [name/ID] /bin/bash`: 进入容器内部执行命令, 输入exit退出
   - `docker cp [name/ID]:/root/root.txt .`: 从容器里面, 将文件拷贝到本机
 
 ## Dockerfile
@@ -136,7 +136,7 @@ rm -rf /var/lib/docker
 - `.dockerignore`文件
   - 表示要排除, 不要打包到 image 中的文件路径
 - 构建镜像
-  - `docker build -t [镜像名称]:[TAG]`
+  - `docker build -t [镜像名称]:[TAG] .`
     - `-f`: 指定 Dockerfile(不指定就默认寻找)
 
 ## 数据盘
@@ -243,15 +243,3 @@ volumes:
 docker pull nginx
 docker run -d -p 3000-3010:3000-3010 -p 80:80 -p 443:443 --name nginx -v /nginx/html:/usr/share/nginx/html -v /nginx/conf/nginx.conf:/etc/nginx/nginx.conf -v /nginx/cert:/etc/nginx/cert -v /nginx/logs:/var/log/nginx nginx
 ```
-
-<!--
-dist/**,Dockerfile,default.conf
-
-cd  /data/${JOB_BASE_NAME}
-docker stop ${JOB_BASE_NAME}
-docker rm -f ${JOB_BASE_NAME}
-docker rmi $(docker images -f "dangling=true" -q)
-docker rmi -f $(docker images -f "label=${JOB_BASE_NAME}" -q)
-docker build -t ${JOB_BASE_NAME} .
-docker run  --restart=always  --name ${JOB_BASE_NAME}   -p 25555:80 -d ${JOB_BASE_NAME}
- -->

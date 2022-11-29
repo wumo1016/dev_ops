@@ -45,3 +45,13 @@ systemctl restart jenkins
 ## 查看 jenkins 所属用户
 
 `ps -ef | grep jenkins`
+
+<!--
+npm install --registry=https://registry.npm.taobao.org
+npm run build
+docker stop ${JOB_BASE_NAME}
+docker rm ${JOB_BASE_NAME}
+docker rmi ${JOB_BASE_NAME}
+docker build -t ${JOB_BASE_NAME} .
+docker run -d -p 80:80 --name ${JOB_BASE_NAME} ${JOB_BASE_NAME}
+ -->
