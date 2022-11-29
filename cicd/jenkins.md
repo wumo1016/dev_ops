@@ -14,6 +14,13 @@
 
 到 jenkins 插件管理中搜索`nodejs`即可
 
+## 添加 docker 权限
+
+```yml
+usermod -aG docker jenkins
+systemctl restart jenkins
+```
+
 ## 添加 node 环境
 
 jenkins => 系统管理 => 全局工具配置 => NodeJS
@@ -33,13 +40,6 @@ jenkins => 系统管理 => 全局工具配置 => NodeJS
 npm install --registry=https://registry.npm.taobao.org
 npm run build
 docker build -t viteproject:1.0.0 .
-```
-
-## 添加 docker 权限
-
-```yml
-usermod -aG docker jenkins
-systemctl restart jenkins
 ```
 
 ## 查看 jenkins 所属用户
