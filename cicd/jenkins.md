@@ -39,6 +39,8 @@ jenkins => 系统管理 => 全局工具配置 => NodeJS
 
 ## 执行 sheel
 
+- 示例 1
+
 ```bash
 npm install --registry=https://registry.npm.taobao.org
 npm run build
@@ -48,6 +50,8 @@ docker rmi ${JOB_BASE_NAME}
 docker build -t ${JOB_BASE_NAME} .
 docker run -d -p 80:80 --name ${JOB_BASE_NAME} ${JOB_BASE_NAME}
 ```
+
+- 示例 2
 
 ```bash
 npm install --registry=https://registry.npm.taobao.org
