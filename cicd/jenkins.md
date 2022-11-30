@@ -39,22 +39,28 @@ jenkins => 系统管理 => 全局工具配置 => NodeJS
 
 ## 执行 sheel
 
-```yml
+```bash
 npm install --registry=https://registry.npm.taobao.org
 npm run build
-docker stop ${JOB_BASE_NAME} 2> /dev/null
+docker stop ${JOB_BASE_NAME}
 docker rm ${JOB_BASE_NAME}
 docker rmi ${JOB_BASE_NAME}
 docker build -t ${JOB_BASE_NAME} .
 docker run -d -p 80:80 --name ${JOB_BASE_NAME} ${JOB_BASE_NAME}
 ```
 
-```yml
+```bash
 npm install --registry=https://registry.npm.taobao.org
 npm run build
-docker stop ${JOB_BASE_NAME} 2> null
-docker rm ${JOB_BASE_NAME} 2> null
-docker rmi ${JOB_BASE_NAME} 2> null
+if [[ -n $(docker ps -q -f "name=^${JOB_BASE_NAME}$") ]];then
+  docker stop ${JOB_BASE_NAME}
+fi
+if [[ -n $(docker ps -aq -f "name=^${JOB_BASE_NAME}$") ]];then
+  docker rm ${JOB_BASE_NAME}
+fi
+if [[ -n $(docker images -q ${JOB_BASE_NAME}) ]];then
+  docker rmi ${JOB_BASE_NAME}
+fi
 docker build -t ${JOB_BASE_NAME} .
 docker run -d -p 80:80 --name ${JOB_BASE_NAME} ${JOB_BASE_NAME}
 ```

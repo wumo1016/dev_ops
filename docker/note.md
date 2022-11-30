@@ -61,6 +61,7 @@ rm -rf /var/lib/docker
   - `docker pull [imageName]`: 拉取镜像
   - `docker images`: 列出所有镜像
     - `-q`: 只显示镜像 id
+      - 示例 1: `docker images -q test` 查找是否有名为 test 的镜像
   - `docker rmi [imageName]`: 删除镜像
     - `-f`: 强制删除
   - `docker history [imageName]`: 查看镜像提交历史
@@ -96,6 +97,14 @@ rm -rf /var/lib/docker
 - 常用命令
   - `docker ps`: 查看正在运行的容器
     - `-a`: 查看所有容器
+    - `-q`: 仅显示 ID
+    - `-f`: 使用过滤器来过滤输出
+      - id: 容器 id
+      - name: 容器名称
+        - 示例 1: `docker ps -q -f "name=^test1$"`
+      - status: 容器状态(created,restarting,running,paused,exited,dead)
+      - id: 容器 id
+      - id: 容器 id
   - `docker run [imageName]`: 创建一个容器
     - `--name [容器名]`: 设置容器名
     - `-p [真实端口]:[容器端口]`: 映射端口
