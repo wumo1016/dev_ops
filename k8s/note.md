@@ -26,6 +26,8 @@
 - 通过匹配规则访问不同的 Service
 - 基于 nginx 实现
 
+## 灰度发布
+
 ## 常用命令
 
 - `kubectl get svc`: 查看服务, 同`kubectl get service`
