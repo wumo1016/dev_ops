@@ -69,8 +69,6 @@ docker build -t ${JOB_BASE_NAME} .
 docker run -d -p 80:80 --name ${JOB_BASE_NAME} ${JOB_BASE_NAME}
 ```
 
-WORKSPACE
-
 ## 查看 jenkins 所属用户
 
 `ps -ef | grep jenkins`
