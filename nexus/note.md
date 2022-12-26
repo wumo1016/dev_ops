@@ -40,10 +40,14 @@ vim /usr/local/nexus-3.29.0-02/bin/nexus
   - Security => Users => Create local user
 - 设置权限
   - Security => Realms => 将 `npm Bearer Token Realm` 移到 Active 中去
-- 登录私服
-  - 项目根目录下执行 `npm login --registry=[仓库地址]`
-    - 示例: `npm login --registry=http://[ip]:[端口]/repository/[仓库名]/`
-  - 然后需要输入 nexus 创建的用户名、密码、邮箱
+- 登录
+  - 局部注册
+    - 项目根目录下执行 `npm login --registry=[仓库地址]`
+      - 示例: `npm login --registry=http://[ip]:[端口]/repository/[仓库名]/`
+    - 然后需要输入 nexus 创建的用户名、密码、邮箱
+  - 全局注册
+    - `npm adduser --registry=http://[ip]:[端口]/repository/[仓库名]/`
+    - 然后需要输入 nexus 创建的用户名、密码、邮箱
 - 发布
   - 项目根目录下执行 `npm publish --registry=[仓库地址]`
     - 示例: `npm publish --registry=http://[ip]:[端口]/repository/[仓库名]/`
