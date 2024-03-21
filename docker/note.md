@@ -16,8 +16,9 @@
 
 ```yml
 yum install -y yum-utils device-mapper-persistent-data lvm2 #安装工具
-yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo #设置安装源
+yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo #设置安装源
 yum install docker-ce docker-ce-cli containerd.io -y #安装社区版
+# 至此docker已经安装完毕 可以通过 docker -v 查看是否安装成功
 ```
 
 ## 启动并设置开机自启
@@ -38,6 +39,7 @@ sudo tee /etc/docker/daemon.json <<-'EOF'
 EOF
 sudo systemctl daemon-reload
 sudo systemctl restart docker
+# 使用 docker info 即可查看是否配置成功
 ```
 
 ## 停止
@@ -173,6 +175,21 @@ yum -y install epel-release
 yum -y install python-pip
 yum clean all
 pip install docker-compose
+# 若报 requests 的错 就执行 pip install -I requests==2.10.0
+
+## 方式三
+# 去下载源文件 https://github.com/docker/compose/releases (docker-compose-linux-x86_64)
+# 然后更名为 docker-compose
+# 然后移动到 /usr/local/bin 目录下
+# 添加执行权限
+chmod +x /usr/local/bin/docker-compose
+
+## 卸载
+# 如果是二进制包方式安装的，删除二进制文件即可：
+sudo rm /usr/local/bin/docker-compose
+# 如果通过Python pip工具安装的，则执行如下命令删除：
+sudo pip uninstall docker-compose
+
 ```
 
 - 配置文件 `docker-compose.yml`
