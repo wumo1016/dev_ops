@@ -168,7 +168,7 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.25.0/docker-
 # 添加可执行权限
 sudo chmod +x /usr/local/bin/docker-compose
 # 查看版本信息
-docker-compose -version
+docker-compose --version
 
 ## 方式二
 yum -y install epel-release
