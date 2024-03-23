@@ -1,5 +1,5 @@
 ```yml
-docker pull jenkins/jenkins:lts
+docker pull jenkins/jenkins:2.440.2-lts
 mkdir /docker
 mkdir /jenkins
 chown -R 1000:1000 /docker
