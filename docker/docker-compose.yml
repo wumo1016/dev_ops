@@ -1,12 +1,12 @@
 version: '3.8'
 services:
   jenkins:
-    image: jenkins/jenkins:2.440.1-lts
+    image: jenkins/jenkins:2.440.2-lts
     container_name: jenkins
     restart: always
     privileged: true
     ports:
-      - '200:8080'
+      - '8080:8080'
       - '50000:50000'
     volumes:
-      - /jenkins:/var/jenkins_home
+      - /home/jenkins:/var/jenkins_home
