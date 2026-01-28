@@ -1,5 +1,14 @@
-version: '3.8'
 services:
+  nginx1:
+    image: nginx
+    ports:
+      - 8080:80
+    volumes:
+      - E:\wumo\basic_expand\docker\nginx\nginx.conf:/etc/nginx/nginx.conf
+  nginx2:
+    image: nginx
+    ports:
+      - 8081:80
   jenkins:
     image: jenkins/jenkins:2.440.2-lts
     container_name: jenkins
