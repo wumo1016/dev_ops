@@ -1,0 +1,14 @@
+{
+  "name": "dev_ops",
+  "version": "1.0.0",
+  "description": "- linux - nginx - docker - mongodb mysql redis - jenkins - k8s - cicd 灰度发布",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {}
+}
