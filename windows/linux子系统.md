@@ -22,6 +22,7 @@
 ## 安装
 
 ```bash
+wsl --set-default-version 2
 wsl --install --web-download
 ```
 
